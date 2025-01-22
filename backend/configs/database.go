@@ -16,7 +16,7 @@ func ConnectDB() {
 
 	client, err := mongo.NewClient(clientOptions)
 	if err != nil {
-		log.Fatal("Failed to create MongoDB client:", err)
+		log.Fatalf("Failed to create MongoDB client: %v", err)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -24,7 +24,12 @@ func ConnectDB() {
 
 	err = client.Connect(ctx)
 	if err != nil {
-		log.Fatal("Failed to connect to MongoDB:", err)
+		log.Fatalf("Failed to connect to MongoDB: %v", err)
+	}
+
+	err = client.Ping(ctx, nil)
+	if err != nil {
+		log.Fatalf("Failed to ping MongoDB: %v", err)
 	}
 
 	log.Println("Connected to MongoDB!")
@@ -32,5 +37,8 @@ func ConnectDB() {
 }
 
 func GetCollection(collectionName string) *mongo.Collection {
+	if DB == nil {
+		log.Fatal("MongoDB connection is not initialized")
+	}
 	return DB.Database("shopProject").Collection(collectionName)
 }

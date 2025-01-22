@@ -8,11 +8,15 @@ import (
 )
 
 func main() {
+	// MongoDB bağlantısını başlat
 	configs.ConnectDB()
 
+	// Fiber uygulaması oluştur
 	app := fiber.New()
 
+	// Rotaları ekle
 	routes.UserRoutes(app)
 
+	// Sunucuyu başlat
 	app.Listen(":3000")
 }
