@@ -1,0 +1,20 @@
+golang
+jwt
+react
+node.js
+redux
+
+cd /home/deniz/Masaüstü/shopProject/backend
+go run main.go
+
+cd /home/deniz/Masaüstü/shopProject/client
+npm run dev
+
+{
+  "username": "denizb",
+  "email": "denizb@example.com",
+  "password": "dnzbrck"
+}
+
+
+
