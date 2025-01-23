@@ -17,9 +17,9 @@ func main() {
 
 	// CORS middleware ekle
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:5173", // Frontend'in çalıştığı adres
-		AllowMethods: "GET,POST,PUT,DELETE",  // İzin verilen HTTP yöntemleri
-		AllowHeaders: "Content-Type",         // İzin verilen HTTP başlıkları
+		AllowOrigins: "http://localhost:5173",
+		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowHeaders: "Content-Type",
 	}))
 
 	// Rotaları ekle

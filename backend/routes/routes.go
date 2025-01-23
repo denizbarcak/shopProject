@@ -7,6 +7,9 @@ import (
 )
 
 func UserRoutes(app *fiber.App) {
-	app.Post("/register", controllers.Register)
-	app.Post("/login", controllers.Login) // Login rotası
+	// Register endpoint
+	app.Post("/api/register", controllers.Register)
+
+	// Login endpoint
+	app.Post("/api/login", controllers.Login)
 }
