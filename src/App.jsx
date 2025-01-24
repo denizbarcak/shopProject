@@ -1,18 +1,21 @@
 import React from "react";
-import Header from "./components/Header"; // Header bileşenini içe aktarıyoruz
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   return (
-    <div>
-      {/* Header bileşeni tüm sayfalarda görünür */}
-      <Header />
-
-      {/* Ana içerik alanı */}
-      <div className="pt-20 px-4">
-        <h2 className="text-2xl font-semibold">Merhaba, bu uygulamanın ana sayfasıdır!</h2>
-        <p className="mt-4">Burada sayfanızın içeriklerini oluşturabilirsiniz.</p>
+    <Router>
+      <div>
+        <Header /> {/* Header her sayfada görünecek */}
+        <Routes>
+          <Route path="/" element={<h1>Home Page</h1>} /> {/* Anasayfa */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} /> {/* setUser kaldırıldı */}
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Header = () => {
+const Header = ({ user }) => { // Kullanıcı bilgisi prop olarak alınıyor
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
@@ -23,31 +23,35 @@ const Header = () => {
                     onMouseEnter={handleMouseEnterSubMenu} 
                     onMouseLeave={handleMouseLeaveSubMenu}
                 >
-                    <a href="#" className="hover:text-yellow-400">Home</a>
-                    <a href="#" className="hover:text-yellow-400">Products</a>
-                    <a href="#" className="hover:text-yellow-400">About</a>
-                    <a href="#" className="hover:text-yellow-400">Contact</a>
+                    <a href="/" className="hover:text-yellow-400">Home</a>
+                    <a href="/products" className="hover:text-yellow-400">Products</a>
+                    <a href="/about" className="hover:text-yellow-400">About</a>
+                    <a href="/contact" className="hover:text-yellow-400">Contact</a>
                 </nav>
                 <div 
                     className="relative flex items-center"
                     onMouseEnter={() => setIsMenuOpen(true)}
                     onMouseLeave={() => setIsMenuOpen(false)}
                 >
-                    <button 
-                        className="ml-2 bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 mr-7 rounded-xl"
-                    >
-                        Login
-                    </button>
-                    {isMenuOpen && (
+                    {user ? ( // Kullanıcı giriş yaptıysa
+                        <span className="ml-2 text-yellow-400">{`Welcome, ${user}`}</span>
+                    ) : (
+                        <button 
+                            className="ml-2 bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 mr-7 rounded-xl"
+                        >
+                            Login
+                        </button>
+                    )}
+                    {isMenuOpen && !user && ( // Kullanıcı giriş yapmamışsa menüyü göster
                         <div className="absolute right-0 top-full mt-2 w-48 bg-white text-black rounded-md shadow-lg">
                             <a 
-                                href="#" 
+                                href="/register" 
                                 className="block px-4 py-2 hover:bg-gray-200"
                             >
                                 Register
                             </a>
                             <a 
-                                href="#" 
+                                href="/login" 
                                 className="block px-4 py-2 hover:bg-gray-200"
                             >
                                 Sign In
